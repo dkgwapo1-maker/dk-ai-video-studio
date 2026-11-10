@@ -1,0 +1,20 @@
+{
+  "name": "DK AI VIDEO STUDIO \u2014 BY DADZ-KIE",
+  "short_name": "DK Video Studio",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#090b14",
+  "theme_color": "#090b14",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

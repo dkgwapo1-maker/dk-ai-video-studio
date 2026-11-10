@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090b14">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<title>DK AI VIDEO STUDIO — BY DADZ-KIE</title>
+<style>
+:root{color-scheme:dark;--bg:#090b14;--panel:#141827;--line:#2b344a;--gold:#f5b942;--muted:#aab3c5}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#090b14,#151b2d);color:#f6f7fb;font:16px system-ui,Arial,sans-serif}
+main{max-width:760px;margin:auto;padding:22px 16px 48px}.brand{font-weight:900;letter-spacing:.08em;color:var(--gold);font-size:14px}
+h1{font-size:clamp(27px,7vw,42px);line-height:1.05;margin:10px 0}p{color:var(--muted);line-height:1.5}
+.panel{background:rgba(20,24,39,.96);border:1px solid var(--line);border-radius:18px;padding:17px;margin:16px 0}
+label{display:block;font-size:13px;color:#d8deea;margin:13px 0 6px}
+input,select,textarea,button{width:100%;padding:13px;border-radius:11px;border:1px solid var(--line);background:#0c1120;color:white;font:inherit}
+textarea{min-height:100px;resize:vertical}button{background:var(--gold);color:#151515;border:0;font-weight:800;margin-top:12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.preview{min-height:150px;border:1px dashed #55617b;border-radius:14px;display:grid;place-items:center;text-align:center;padding:18px;color:var(--muted)}
+.note{font-size:12px;color:#ffdb8a}.pill{display:inline-block;padding:5px 9px;border-radius:30px;background:#27314a;color:#dce5f8;font-size:12px}
+@media(max-width:520px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main>
+<div class="brand">🎧 DK MUSIC PRESENTS</div>
+<h1>DK AI VIDEO STUDIO</h1>
+<p>BY DADZ-KIE · Personal video project workspace</p>
+<div class="panel">
+<span class="pill">STUDIO SETUP</span>
+<label for="prompt">Describe your video</label>
+<textarea id="prompt" placeholder="Example: Cinematic night drive through a neon city, rain reflections, dramatic camera movement..."></textarea>
+<div class="grid">
+<div><label for="ratio">Video format</label><select id="ratio"><option>9:16 — TikTok / Reels</option><option>16:9 — YouTube</option><option>1:1 — Square</option></select></div>
+<div><label for="style">Visual style</label><select id="style"><option>Cinematic realistic</option><option>Music video</option><option>Anime</option><option>Fantasy</option><option>3D animation</option></select></div>
+<div><label for="duration">Target duration</label><select id="duration"><option>5 seconds</option><option>10 seconds</option><option>15 seconds</option><option>30 seconds</option></select></div>
+<div><label for="camera">Camera movement</label><select id="camera"><option>Slow cinematic push-in</option><option>Tracking shot</option><option>Drone / aerial</option><option>Handheld</option><option>Static shot</option></select></div>
+</div>
+<label for="image">Reference image (optional)</label><input id="image" type="file" accept="image/*">
+<button id="previewBtn">CREATE VIDEO BRIEF</button>
+</div>
+<div class="panel"><h2>Project preview</h2><div class="preview" id="preview">Your video brief will appear here.</div><p class="note">Prototype notice: this page prepares a video brief only. Actual AI video rendering, MP4 export, and cloud generation are not connected yet.</p></div>
+<div class="panel"><h2>My projects</h2><p>Project history and generated-video gallery will be added when storage and a video-generation service are connected.</p></div>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+$("previewBtn").addEventListener("click",()=>{
+ const prompt=$("prompt").value.trim();
+ if(!prompt){$("preview").textContent="Please describe your video first.";return;}
+ $("preview").textContent=[
+ "VIDEO BRIEF READY",
+ "Prompt: "+prompt,
+ "Format: "+$("ratio").value,
+ "Style: "+$("style").value,
+ "Duration: "+$("duration").value,
+ "Camera: "+$("camera").value,
+ "Status: Brief only — no video rendered."
+ ].join("\n");
+ $("preview").style.whiteSpace="pre-line";
+});
+if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));}
+</script></body></html>
